@@ -80,17 +80,15 @@ namespace cppsort
                 }
 
                 template<typename T, typename U>
-                auto operator()(T&& lhs, U&& rhs)
+                auto operator()(const T& lhs, const U& rhs)
                     -> bool
                 {
-                    if (std::get<0>(data)(std::get<1>(data)(std::forward<T>(lhs).get()),
-                                          std::get<1>(data)(std::forward<U>(rhs).get())))
-                    {
+                    if (std::get<0>(data)(std::get<1>(data)(const_cast<T&>(lhs).get()),
+                                          std::get<1>(data)(const_cast<U&>(rhs).get()))) {
                         return true;
                     }
-                    if (std::get<0>(data)(std::get<1>(data)(std::forward<U>(rhs).get()),
-                                          std::get<1>(data)(std::forward<T>(lhs).get())))
-                    {
+                    if (std::get<0>(data)(std::get<1>(data)(const_cast<U&>(rhs).get()),
+                                          std::get<1>(data)(const_cast<T&>(lhs).get()))) {
                         return false;
                     }
                     return lhs.data < rhs.data;

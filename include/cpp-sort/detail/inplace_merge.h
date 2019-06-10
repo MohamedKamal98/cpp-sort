@@ -135,11 +135,11 @@ namespace detail
             {}
 
             template<typename T1, typename T2>
-            auto operator()(const T1& x, const T2& y)
+            auto operator()(T1&& x, T2&& y)
                 -> bool
             {
                 auto&& pred = utility::as_function(predicate);
-                return pred(y, x);
+                return pred(std::forward<T2>(y), std::forward<T1>(x));
             }
     };
 

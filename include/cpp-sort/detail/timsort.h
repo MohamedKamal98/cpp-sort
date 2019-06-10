@@ -296,7 +296,7 @@ namespace detail
 
             auto&& comp = utility::as_function(compare);
             auto&& proj = utility::as_function(projection);
-            auto&& key_proj = proj(key);
+            auto&& key_proj = proj(const_cast<T&>(key));
 
             difference_type lastOfs = 0;
             difference_type ofs = 1;
@@ -354,7 +354,7 @@ namespace detail
 
             auto&& comp = utility::as_function(compare);
             auto&& proj = utility::as_function(projection);
-            auto&& key_proj = proj(key);
+            auto&& key_proj = proj(const_cast<T&>(key));
 
             difference_type ofs = 1;
             difference_type lastOfs = 0;

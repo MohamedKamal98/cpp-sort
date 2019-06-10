@@ -1,7 +1,7 @@
 /*
  * The MIT License (MIT)
  *
- * Copyright (c) 2015-2018 Morwenn
+ * Copyright (c) 2015-2019 Morwenn
  *
  * Permission is hereby granted, free of charge, to any person obtaining a copy
  * of this software and associated documentation files (the "Software"), to deal
@@ -49,7 +49,7 @@ namespace detail
         while (size > 0) {
             ForwardIterator it = first;
             std::advance(it, half(size));
-            if (not comp(value, proj(*it))) {
+            if (not comp(const_cast<T&>(value), proj(*it))) {
                 first = ++it;
                 size -= half(size) + 1;
             } else {
